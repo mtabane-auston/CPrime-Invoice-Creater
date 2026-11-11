@@ -249,6 +249,27 @@ iframe {
   align-items: center;
 }
 
+.analytics-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #242424;
+  padding: 0.3em;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  border: none;
+  color: #ffff;
+  width: 300px;
+  height: 150px;
+
+   background: radial-gradient(
+    circle at bottom left,
+    #8b5cf6 0%,
+    transparent 55%
+  ) #242424;
+
+}
+
 
 
 
