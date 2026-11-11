@@ -58,10 +58,11 @@ npm install
 yarn install
 
 ```
-3. Start the development server: (Front End)
+3. Start the development servers independently:
 
 ```bash
-npm run dev
-# or
-yarn dev
+make backend
+make frontend
 ```
+
+To start both servers together, run `make run`.

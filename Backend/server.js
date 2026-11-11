@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import { sendEmail } from "./emailService.js";
-import { fetchCompanyDetails,getNextInvoiceNumber,insertInvoice,updateComanyDetails } from './databaseFuctions.js';
+import { fetchCompanyDetails,getNextInvoiceNumber,insertInvoice,updateComanyDetails,getAllItems,getAllInvoices } from './databaseFuctions.js';
+import { getAnalyticsData } from './analyticsService.js';
 
 const app = express();
 app.use(cors());
@@ -46,6 +47,35 @@ app.get('/api/next-invoice-number', (req, res) => {
     }).catch(err => {
         console.error('Error fetching company details:', err);
     });
+});
+
+app.get('/api/invoices', async (req, res) => {
+    try {
+        const invoices = await getAllInvoices();
+        res.json(invoices);
+    } catch (err) {
+        console.error('Error fetching invoices:', err);
+        res.status(500).json({ error: 'Failed to fetch invoices' });
+    }
+});
+
+app.get('/api/items', async (req, res) => {
+    try {
+        const items = await getAllItems();
+        res.json(items);
+    } catch (err) {
+        console.error('Error fetching items:', err);
+        res.status(500).json({ error: 'Failed to fetch items' });
+    }
+});
+app.get('/api/analytics', async (req, res) => {
+    try {
+        const analyticsData = await getAnalyticsData();
+        res.json(analyticsData);
+    } catch (err) {
+        console.error('Error fetching analytics data:', err);
+        res.status(500).json({ error: 'Failed to fetch analytics data' });
+    }
 });
 
 app.post("/settings/update-data", async (req, res) => {

@@ -173,4 +173,26 @@ async function upsertInvoice(invoice, client_id) {
     }
 }
 
+export async function getAllInvoices() {
+    try {
+        const { data, error } = await supabase
+            .from('invoices')
+            .select('*')
+        return data;
+    }
+    catch (e) {
+        console.error(e);
+    }
 
+}
+
+export async function getAllItems() {
+    try {
+        const { data, error } = await supabase
+            .from('items')
+            .select('*')
+        return data;
+    } catch (e) {
+        console.error(e);
+    }
+}
